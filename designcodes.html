@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6M 毕业班服目录精选 (RM15) | Kod Reka Bentuk PDF 6M</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght,ROND@8..144,500..900,100&family=Noto+Sans+SC:wght@500;700;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --bg-stage: radial-gradient(circle at 50% 42%, #f4efe6 0%, #e1d9cb 75%, #cfc5b4 100%);
+      --hud-bg: rgba(255, 253, 248, 0.95);
+      --hud-border: rgba(28, 25, 20, 0.2);
+      --ink-main: #151412;
+      --ink-sub: #4c463d;
+      --accent: #1d57b8;
+      --accent-ink: #ffffff;
+      --btn-bg: #ebe3d5;
+      --shadow-hud: 0 10px 30px rgba(38, 28, 16, 0.14);
+      --font-ui: "Google Sans Flex", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", ui-rounded, sans-serif;
+    }
+
+    [data-backdrop="dark"] {
+      --bg-stage: radial-gradient(circle at 50% 42%, #2b3038 0%, #181c22 72%, #0e1116 100%);
+      --hud-bg: rgba(25, 29, 36, 0.95);
+      --hud-border: rgba(255, 255, 255, 0.22);
+      --ink-main: #f9f6f0;
+      --ink-sub: #cec7bc;
+      --accent: #ffd452;
+      --accent-ink: #181611;
+      --btn-bg: #343a46;
+      --shadow-hud: 0 12px 34px rgba(0, 0, 0, 0.56);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100vw;
+      height: 100dvh;
+      overflow: hidden;
+      background: var(--bg-stage);
+      color: var(--ink-main);
+      font-family: var(--font-ui);
+      font-variation-settings: "ROND" 100;
+      -webkit-font-smoothing: antialiased;
+      user-select: none;
+    }
+
+    .viewport {
+      position: relative;
+      width: 100vw;
+      height: 100dvh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .shirt-page {
+      position: absolute;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 68px 64px 78px;
+    }
+
+    .shirt-page.active {
+      display: flex;
+      animation: pageFade 0.25s ease-out;
+    }
+
+    @keyframes pageFade {
+      from { opacity: 0; transform: scale(0.985); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .shirt-canvas-wrap {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-in;
+      transition: transform 0.36s cubic-bezier(0.22, 1, 0.36, 1);
+      transform-origin: 50% 45%;
+    }
+
+    .shirt-page[data-side="front"] .shirt-canvas-wrap { transform-origin: 50% 38%; }
+    .shirt-page[data-side="back"]  .shirt-canvas-wrap { transform-origin: 50% 53%; }
+
+    .viewport.zoomed .shirt-page[data-side="front"] .shirt-canvas-wrap {
+      transform: scale(1.9);
+      cursor: zoom-out;
+    }
+
+    .viewport.zoomed .shirt-page[data-side="back"] .shirt-canvas-wrap {
+      transform: scale(1.66);
+      cursor: zoom-out;
+    }
+
+    .shirt-svg {
+      width: auto;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      filter: drop-shadow(0 26px 40px rgba(26, 22, 16, 0.28));
+    }
+
+    .top-hud {
+      position: fixed;
+      top: 14px;
+      left: 16px;
+      right: 16px;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      pointer-events: none;
+    }
+
+    .hud-pill {
+      pointer-events: auto;
+      background: var(--hud-bg);
+      border: 2px solid var(--hud-border);
+      border-radius: 999px;
+      box-shadow: var(--shadow-hud);
+      padding: 8px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      backdrop-filter: blur(10px);
+    }
+
+    .color-chip {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid var(--hud-border);
+      flex-shrink: 0;
+    }
+
+    .title-stack {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.18;
+    }
+
+    .title-zh {
+      font-size: clamp(1rem, 2.1vw, 1.38rem);
+      font-weight: 800;
+      color: var(--ink-main);
+    }
+
+    .title-bm {
+      font-size: clamp(0.75rem, 1.35vw, 0.92rem);
+      font-weight: 700;
+      color: var(--ink-sub);
+    }
+
+    .hud-actions {
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hud-btn {
+      border: 2px solid var(--hud-border);
+      background: var(--hud-bg);
+      color: var(--ink-main);
+      font-family: var(--font-ui);
+      font-variation-settings: "ROND" 100;
+      border-radius: 999px;
+      padding: 8px 16px;
+      min-height: 48px;
+      cursor: pointer;
+      box-shadow: var(--shadow-hud);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.1;
+      transition: transform 0.15s ease, background 0.2s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .hud-btn:hover { transform: translateY(-1px); }
+
+    .hud-btn.active {
+      background: var(--accent);
+      color: var(--accent-ink);
+      border-color: var(--accent);
+    }
+
+    .hud-btn .zh { font-size: 0.96rem; font-weight: 800; }
+    .hud-btn .bm { font-size: 0.72rem; font-weight: 700; opacity: 0.9; }
+
+    .side-nav {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 30;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px solid var(--hud-border);
+      background: var(--hud-bg);
+      color: var(--ink-main);
+      font-size: 2.1rem;
+      font-weight: 800;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      box-shadow: var(--shadow-hud);
+      transition: transform 0.15s ease, background 0.2s ease;
+    }
+
+    .side-nav:hover:not(:disabled) {
+      background: var(--accent);
+      color: var(--accent-ink);
+      transform: translateY(-50%) scale(1.06);
+    }
+
+    .side-nav:disabled { opacity: 0.25; cursor: not-allowed; }
+    .side-prev { left: 16px; }
+    .side-next { right: 16px; }
+
+    .bottom-hud {
+      position: fixed;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 30;
+      max-width: calc(100vw - 24px);
+      overflow-x: auto;
+      background: var(--hud-bg);
+      border: 2px solid var(--hud-border);
+      border-radius: 999px;
+      padding: 6px 10px;
+      box-shadow: var(--shadow-hud);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      backdrop-filter: blur(10px);
+    }
+
+    .bottom-hud::-webkit-scrollbar { display: none; }
+
+    .page-dot {
+      border: none;
+      background: var(--btn-bg);
+      color: var(--ink-main);
+      font-family: var(--font-ui);
+      font-weight: 800;
+      font-size: 0.88rem;
+      min-width: 48px;
+      height: 42px;
+      padding: 0 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all 0.18s ease;
+    }
+
+    .page-dot.active {
+      background: var(--accent);
+      color: var(--accent-ink);
+      min-width: 60px;
+    }
+
+    .divider-bar {
+      width: 2px;
+      height: 22px;
+      background: var(--hud-border);
+      margin: 0 3px;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 780px) {
+      .shirt-page { padding: 74px 10px 76px; }
+      .side-nav { width: 48px; height: 48px; font-size: 1.7rem; }
+      .side-prev { left: 8px; }
+      .side-next { right: 8px; }
+      .hud-pill { padding: 6px 12px; }
+      .hud-btn { padding: 6px 12px; min-height: 44px; }
+    }
+  </style>
+</head>
+<body data-backdrop="light">
+  <div class="viewport" id="viewport">
+
+    <header class="top-hud">
+      <div class="hud-pill" aria-live="polite">
+        <span class="color-chip" id="hudColorChip"></span>
+        <div class="title-stack">
+          <span class="title-zh" id="hudTitleZh"></span>
+          <span class="title-bm" id="hudTitleBm"></span>
+        </div>
+      </div>
+
+      <div class="hud-actions">
+        <button class="hud-btn" id="zoomBtn" aria-pressed="false">
+          <span class="zh">放大</span>
+          <span class="bm">Zum</span>
+        </button>
+        <button class="hud-btn" id="backdropBtn" aria-pressed="false">
+          <span class="zh">深底</span>
+          <span class="bm">Gelap</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="pagesHost" style="width:100%; height:100%; position:relative;"></main>
+
+    <button class="side-nav side-prev" id="prevBtn" aria-label="上一页 / Sebelum">‹</button>
+    <button class="side-nav side-next" id="nextBtn" aria-label="下一页 / Seterusnya">›</button>
+
+    <nav class="bottom-hud" id="bottomHud" aria-label="页码 / Halaman"></nav>
+  </div>
+
+  <script>
+    (() => {
+      const STUDENTS = [
+        "ASHRAFF DANIEL",
+        "CINDY TOH",
+        "EDEN LAU",
+        "FOO SI SHENG",
+        "GAN JIE FOHNG",
+        "GAN ONG SIN",
+        "GAN TZI YANG",
+        "GAN YU XIN",
+        "GOH JIA LING",
+        "JANICE NGOH",
+        "JAYDEN WONG",
+        "JENNY ANG",
+        "KEVIN TOW",
+        "LAU WEI JIE",
+        "LAU ZHI XUAN",
+        "LIM ZHI YAANG",
+        "LOH YA XUAN",
+        "ARIF WAFIY",
+        "NG TIN WEI",
+        "NG ZI NING",
+        "NIVEDHANRAJ",
+        "TAN JAY DEN",
+        "TAN WEI CHENG",
+        "TEH ZHI JIN",
+        "THOR LI JUN",
+        "TOH WU SIANG",
+        "WANG HONG YONG"
+      ];
+
+      // Exact Codes Verified in SUBLIMATION DESIGN(ALL).pdf
+      const PAGES = [
+        {
+          id: 1, code: "B968", side: "front", chip: "#37b6ff", isLight: true,
+          zh: "款式 1 • 正面 — B (968).ai（第37页）",
+          bm: "Reka Bentuk 1 • Depan — B (968).ai (Ms. 37)",
+          short: "1正"
+        },
+        {
+          id: 2, code: "B968", side: "back", chip: "#37b6ff", isLight: true,
+          zh: "款式 1 • 背面 — B (968).ai（第37页）",
+          bm: "Reka Bentuk 1 • Belakang — B (968).ai (Ms. 37)",
+          short: "1背"
+        },
+        {
+          id: 3, code: "B857", side: "front", chip: "#2454c4", isLight: true,
+          zh: "款式 2 • 正面 — B (857).ai（第31页）",
+          bm: "Reka Bentuk 2 • Depan — B (857).ai (Ms. 31)",
+          short: "2正"
+        },
+        {
+          id: 4, code: "B857", side: "back", chip: "#2454c4", isLight: true,
+          zh: "款式 2 • 背面 — B (857).ai（第31页）",
+          bm: "Reka Bentuk 2 • Belakang — B (857).ai (Ms. 31)",
+          short: "2背"
+        },
+        {
+          id: 5, code: "B648", side: "front", chip: "#1f53bd", isLight: true,
+          zh: "款式 3 • 正面 — B (648).ai（第21页）",
+          bm: "Reka Bentuk 3 • Depan — B (648).ai (Ms. 21)",
+          short: "3正"
+        },
+        {
+          id: 6, code: "B648", side: "back", chip: "#1f53bd", isLight: true,
+          zh: "款式 3 • 背面 — B (648).ai（第21页）",
+          bm: "Reka Bentuk 3 • Belakang — B (648).ai (Ms. 21)",
+          short: "3背"
+        },
+        {
+          id: 7, code: "B775", side: "front", chip: "#ff4778", isLight: true,
+          zh: "款式 4 • 正面 — B (775).ai（第27页）",
+          bm: "Reka Bentuk 4 • Depan — B (775).ai (Ms. 27)",
+          short: "4正"
+        },
+        {
+          id: 8, code: "B775", side: "back", chip: "#ff4778", isLight: true,
+          zh: "款式 4 • 背面 — B (775).ai（第27页）",
+          bm: "Reka Bentuk 4 • Belakang — B (775).ai (Ms. 27)",
+          short: "4背"
+        }
+      ];
+
+      function buildRoster(inkMain, inkAccent, startY, lineGap, fontSize = 12.8) {
+        const left = STUDENTS.slice(0, 14);
+        const right = STUDENTS.slice(14, 27);
+        let svg = "";
+
+        left.forEach((name, i) => {
+          const y = startY + i * lineGap;
+          svg += `<text x="440" y="${y}" text-anchor="end" fill="${inkMain}" font-size="${fontSize}" font-weight="800" letter-spacing="0.25">${name}</text>`;
+        });
+
+        right.forEach((name, i) => {
+          const y = startY + i * lineGap;
+          svg += `<text x="460" y="${y}" text-anchor="start" fill="${inkMain}" font-size="${fontSize}" font-weight="800" letter-spacing="0.25">${name}</text>`;
+        });
+
+        const endY = startY + 13 * lineGap;
+        svg += `<text x="460" y="${endY}" text-anchor="start" fill="${inkAccent}" font-size="${fontSize}" font-weight="900" letter-spacing="0.4">★ 6M • 2026</text>`;
+        return svg;
+      }
+
+      function star4(cx, cy, r, fill) {
+        const ir = r * 0.28;
+        return `<path d="M${cx},${cy - r} L${cx + ir},${cy - ir} L${cx + r},${cy} L${cx + ir},${cy + ir} L${cx},${cy + r} L${cx - ir},${cy + ir} L${cx - r},${cy} L${cx - ir},${cy - ir} Z" fill="${fill}"/>`;
+      }
+
+      function buildTemplateLayers(cfg, uid) {
+        const { code, side } = cfg;
+        const isFront = side === "front";
+
+        // ============================================================
+        // 1. B (968).ai (Page 37) — 3D Cyan/Pink/Blue/White Cubes + White Sleeves
+        // ============================================================
+        if (code === "B968") {
+          const cyan = "#3ad8ff";
+          const pink = "#f568cc";
+          const navy = "#182352";
+          const gold = "#ffe259";
+
+          const fabricPattern = `
+            <defs>
+              <!-- 3D Isometric Cube Tiles matching B (968).ai -->
+              <pattern id="cubes_${uid}" width="56" height="64" patternUnits="userSpaceOnUse">
+                <rect width="56" height="64" fill="#172047"/>
+                <!-- Top Cube -->
+                <polygon points="28,0 56,16 28,32 0,16" fill="#4ce3ff"/>
+                <polygon points="0,16 28,32 28,64 0,48" fill="#5e64d9"/>
+                <polygon points="28,32 56,16 56,48 28,64" fill="#f76dd0"/>
+                <!-- Inner Hex Accent -->
+                <polygon points="28,8 44,16 28,24 12,16" fill="#ffffff" opacity="0.65"/>
+                <polygon points="6,24 22,33 22,52 6,43" fill="#1b2350" opacity="0.55"/>
+                <polygon points="34,33 50,24 50,43 34,52" fill="#ffffff" opacity="0.35"/>
+              </pattern>
+            </defs>
+
+            <!-- White Sleeves Base (Exact match to B (968).ai thumbnail) -->
+            <rect x="70" y="75" width="760" height="810" fill="#f4f6fa"/>
+            <!-- Torso Covered in 3D Glowing Cubes -->
+            <path d="M226,120 L360,75 H540 L674,120 L646,312 V885 H254 V312 Z" fill="url(#cubes_${uid})"/>
+            <!-- Soft Shoulder Blend into White Sleeves -->
+            <path d="M226,120 C248,185 252,250 254,312 L212,312 L212,120 Z" fill="#f4f6fa" opacity="0.15"/>
+            <path d="M674,120 C652,185 648,250 646,312 L688,312 L688,120 Z" fill="#f4f6fa" opacity="0.15"/>
+          `;
+
+          const printArt = isFront
+            ? `
+              <rect x="302" y="256" width="296" height="228" rx="26" fill="rgba(16, 22, 56, 0.92)" stroke="${cyan}" stroke-width="3.5"/>
+              <rect x="310" y="264" width="280" height="212" rx="20" fill="none" stroke="${pink}" stroke-width="1.5" opacity="0.75"/>
+              ${star4(344, 294, 8.5, gold)}
+              ${star4(556, 294, 8.5, cyan)}
+
+              <text x="455" y="376" text-anchor="middle" fill="${pink}" font-size="76" font-weight="900" letter-spacing="4" opacity="0.7">6M</text>
+              <text x="450" y="371" text-anchor="middle" fill="#ffffff" font-size="76" font-weight="900" letter-spacing="4">6M</text>
+
+              <text x="450" y="416" text-anchor="middle" fill="${gold}" font-size="24" font-weight="900" letter-spacing="2">武吉港脚南华学校</text>
+              <rect x="352" y="432" width="196" height="32" rx="16" fill="${cyan}"/>
+              <text x="450" y="454" text-anchor="middle" fill="${navy}" font-size="16.5" font-weight="900" letter-spacing="1.8">2026 毕业解锁</text>
+            `
+            : `
+              <rect x="278" y="250" width="344" height="518" rx="24" fill="rgba(16, 22, 56, 0.93)" stroke="${cyan}" stroke-width="3.5"/>
+              <text x="450" y="290" text-anchor="middle" fill="${cyan}" font-size="23" font-weight="900" letter-spacing="2.5">6M • 玩家全员集合</text>
+              <text x="450" y="320" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="800" letter-spacing="2">武吉港脚南华学校</text>
+              <line x1="302" y1="336" x2="598" y2="336" stroke="${pink}" stroke-width="1.8" opacity="0.7"/>
+              <line x1="450" y1="354" x2="450" y2="694" stroke="${cyan}" stroke-width="1.2" stroke-dasharray="4 6" opacity="0.4"/>
+
+              ${buildRoster("#ffffff", gold, 372, 23.4, 12.8)}
+
+              <rect x="314" y="712" width="272" height="38" rx="19" fill="${gold}"/>
+              <text x="450" y="738" text-anchor="middle" fill="${navy}" font-size="18.5" font-weight="900" letter-spacing="2">▶ 下一关：中学见！</text>
+            `;
+
+          return { fabricPattern, printArt, collarFill: "#ffffff", collarStroke: "rgba(0,0,0,0.18)" };
+        }
+
+        // ============================================================
+        // 2. B (857).ai (Page 31) — Blue/Red/White Liquid Marble + White Sleeves
+        // ============================================================
+        if (code === "B857") {
+          const navy = "#16295c";
+          const blue = "#1f54cc";
+          const red  = "#e02b3c";
+
+          const fabricPattern = `
+            <!-- Crisp White Base & Sleeves (Exact match to B (857).ai) -->
+            <rect x="70" y="75" width="760" height="810" fill="#f7f8fa"/>
+
+            <!-- Swirling Royal Blue & Crimson Red Liquid Marble Across Torso -->
+            <g>
+              <path d="M226,120 L360,75 H540 L674,120 L646,312 V885 H254 V312 Z" fill="#ffffff"/>
+              <!-- Bold Blue Marble Waves -->
+              <path d="M250,110 C320,160 280,270 360,310 C440,350 480,220 560,260 C630,295 610,410 650,450 L650,120 L540,75 L360,75 Z" fill="${blue}"/>
+              <path d="M250,420 C330,380 370,490 450,460 C530,430 570,540 650,500 V680 C560,720 490,610 410,650 C330,690 290,590 250,620 Z" fill="${blue}"/>
+              <path d="M250,740 C340,700 420,820 520,760 C580,725 620,780 650,750 V885 H250 Z" fill="${blue}"/>
+              <!-- Bold Crimson Red Marble Ribbons -->
+              <path d="M250,240 C310,210 380,320 460,270 C530,225 580,310 650,280 V340 C580,380 510,290 430,340 C350,390 300,290 250,320 Z" fill="${red}"/>
+              <path d="M250,540 C340,510 390,630 490,570 C560,530 600,610 650,580 V640 C580,680 520,590 430,640 C350,685 300,590 250,615 Z" fill="${red}"/>
+              <path d="M290,820 C380,770 470,870 590,800 C620,782 640,795 650,810 V885 H290 Z" fill="${red}"/>
+              <!-- Crisp White Marble Counter-Swirls -->
+              <path d="M270,180 C340,220 410,140 490,190 C550,225 590,160 630,190" fill="none" stroke="#ffffff" stroke-width="18" stroke-linecap="round"/>
+              <path d="M265,480 C350,440 420,540 520,485 C580,455 615,500 640,480" fill="none" stroke="#ffffff" stroke-width="16" stroke-linecap="round"/>
+              <path d="M275,700 C360,740 450,650 550,715 C600,745 625,705 642,720" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round"/>
+            </g>
+          `;
+
+          const printArt = isFront
+            ? `
+              <rect x="304" y="256" width="292" height="224" rx="28" fill="rgba(255,255,255,0.96)" stroke="${navy}" stroke-width="4"/>
+              <text x="455" y="368" text-anchor="middle" fill="${red}" font-size="76" font-weight="900" letter-spacing="4" opacity="0.75">6M</text>
+              <text x="450" y="363" text-anchor="middle" fill="${blue}" font-size="76" font-weight="900" letter-spacing="4">6M</text>
+              <text x="450" y="408" text-anchor="middle" fill="${navy}" font-size="24" font-weight="900" letter-spacing="2">武吉港脚南华学校</text>
+              <rect x="348" y="424" width="204" height="34" rx="17" fill="${red}"/>
+              <text x="450" y="447" text-anchor="middle" fill="#ffffff" font-size="17.5" font-weight="900" letter-spacing="2.2">2026 毕业快乐</text>
+            `
+            : `
+              <rect x="278" y="250" width="344" height="518" rx="26" fill="rgba(255,255,255,0.97)" stroke="${navy}" stroke-width="4"/>
+              <text x="450" y="290" text-anchor="middle" fill="${blue}" font-size="23" font-weight="900" letter-spacing="2.5">武吉港脚南华学校</text>
+              <text x="450" y="322" text-anchor="middle" fill="${red}" font-size="20" font-weight="900" letter-spacing="3">6M • 2026 毕业快乐</text>
+              <line x1="304" y1="338" x2="596" y2="338" stroke="${navy}" stroke-width="1.8" opacity="0.25"/>
+              <line x1="450" y1="356" x2="450" y2="696" stroke="${blue}" stroke-width="1.2" stroke-dasharray="3 6" opacity="0.35"/>
+
+              ${buildRoster(navy, red, 374, 23.4, 12.8)}
+
+              <rect x="314" y="712" width="272" height="38" rx="19" fill="${navy}"/>
+              <text x="450" y="737" text-anchor="middle" fill="#ffffff" font-size="18.5" font-weight="900" letter-spacing="2.4">永远的六M • 一路顺风</text>
+            `;
+
+          return { fabricPattern, printArt, collarFill: navy, collarStroke: "rgba(255,255,255,0.22)" };
+        }
+
+        // ============================================================
+        // 3. B (648).ai (Page 21) — Royal Blue & Sunny Gold Shards + White Sleeves
+        // ============================================================
+        if (code === "B648") {
+          const royal = "#1c4ec4";
+          const gold  = "#f5cb24";
+          const navy  = "#102863";
+
+          const fabricPattern = `
+            <!-- Crisp White Sleeves Base (Matches B (648).ai) -->
+            <rect x="70" y="75" width="760" height="810" fill="#f6f7fa"/>
+
+            <!-- Royal Blue Torso with Diagonal Yellow-Gold & White Geometric Shards -->
+            <path d="M226,120 L360,75 H540 L674,120 L646,312 V885 H254 V312 Z" fill="${royal}"/>
+            <g>
+              <polygon points="240,180 410,90 445,145 255,260" fill="${gold}"/>
+              <polygon points="480,100 660,150 645,230 450,150" fill="#ffffff" opacity="0.88"/>
+              <polygon points="250,350 480,210 520,275 250,435" fill="${gold}" opacity="0.95"/>
+              <polygon points="360,440 650,270 650,360 395,510" fill="#2f6df0"/>
+              <polygon points="250,580 540,410 580,475 250,660" fill="#ffffff" opacity="0.22"/>
+              <polygon points="320,710 650,515 650,605 360,780" fill="${gold}" opacity="0.92"/>
+              <polygon points="250,820 510,670 550,740 280,885 250,885" fill="#ffffff" opacity="0.82"/>
+              <polygon points="480,885 650,780 650,885" fill="${gold}"/>
+            </g>
+          `;
+
+          const printArt = isFront
+            ? `
+              <path d="M312,258 H588 V414 C588,458 450,498 450,498 C450,498 312,458 312,414 Z"
+                    fill="rgba(16, 40, 99, 0.93)" stroke="${gold}" stroke-width="4"/>
+              <defs>
+                <path id="arch648_${uid}" d="M 326,324 Q 450,266 574,324"/>
+              </defs>
+              <text fill="#ffffff" font-size="23" font-weight="900" letter-spacing="2.5">
+                <textPath href="#arch648_${uid}" startOffset="50%" text-anchor="middle">武吉港脚南华学校</textPath>
+              </text>
+
+              <text x="454" y="404" text-anchor="middle" fill="#63b5ff" font-size="74" font-weight="900" letter-spacing="4" opacity="0.55">6M</text>
+              <text x="450" y="400" text-anchor="middle" fill="${gold}" font-size="74" font-weight="900" letter-spacing="4">6M</text>
+              ${star4(360, 374, 9, "#ffffff")}
+              ${star4(540, 374, 9, "#ffffff")}
+
+              <rect x="352" y="422" width="196" height="34" rx="17" fill="${gold}"/>
+              <text x="450" y="445" text-anchor="middle" fill="${navy}" font-size="18" font-weight="900" letter-spacing="2">2026 毕业快乐</text>
+            `
+            : `
+              <rect x="278" y="250" width="344" height="518" rx="24" fill="rgba(16, 40, 99, 0.94)" stroke="${gold}" stroke-width="3.5"/>
+              <text x="450" y="290" text-anchor="middle" fill="${gold}" font-size="23" font-weight="900" letter-spacing="2.5">武吉港脚南华学校</text>
+              <text x="450" y="322" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="900" letter-spacing="3">6M • 2026 毕业纪念</text>
+              <line x1="304" y1="338" x2="596" y2="338" stroke="${gold}" stroke-width="1.8" opacity="0.65"/>
+              <line x1="450" y1="356" x2="450" y2="696" stroke="${gold}" stroke-width="1.2" stroke-dasharray="3 6" opacity="0.45"/>
+
+              ${buildRoster("#ffffff", gold, 374, 23.4, 12.8)}
+
+              <rect x="314" y="712" width="272" height="38" rx="19" fill="${gold}"/>
+              <text x="450" y="737" text-anchor="middle" fill="${navy}" font-size="18.5" font-weight="900" letter-spacing="2.4">梦想起飞 • 前程似锦</text>
+            `;
+
+          return { fabricPattern, printArt, collarFill: navy, collarStroke: "rgba(255,255,255,0.22)" };
+        }
+
+        // ============================================================
+        // 4. B (775).ai (Page 27) — Rainbow Diagonal Pop Strokes + White Sleeves
+        // ============================================================
+        const ink    = "#18243c";
+        const cobalt = "#1e63eb";
+        const coral  = "#ff3e6c";
+        const sunny  = "#ffd12e";
+        const cyan   = "#2cc9ff";
+
+        const fabricPattern = `
+          <!-- White Base & Sleeves (Matches B (775).ai) -->
+          <rect x="70" y="75" width="760" height="810" fill="#f9fafc"/>
+
+          <!-- Diagonal Pop-Art Brush Strokes Across Torso -->
+          <g>
+            <polygon points="240,145 480,75 535,75 240,210" fill="${coral}" opacity="0.9"/>
+            <polygon points="240,255 615,85 650,120 240,320" fill="${sunny}" opacity="0.92"/>
+            <polygon points="250,385 650,195 650,260 250,450" fill="${cobalt}" opacity="0.88"/>
+            <polygon points="250,515 650,325 650,375 250,565" fill="${cyan}" opacity="0.82"/>
+            <polygon points="250,625 650,435 650,490 250,680" fill="${coral}" opacity="0.86"/>
+            <polygon points="250,745 650,555 650,620 250,810" fill="${sunny}" opacity="0.9"/>
+            <polygon points="310,885 650,715 650,785 415,885" fill="${cobalt}" opacity="0.9"/>
+            <polygon points="500,885 650,810 650,885" fill="${coral}" opacity="0.9"/>
+          </g>
+        `;
+
+        const printArt = isFront
+          ? `
+            <rect x="306" y="264" width="308" height="222" rx="30" fill="${sunny}" stroke="${ink}" stroke-width="4.5"/>
+            <rect x="296" y="254" width="308" height="222" rx="30" fill="#ffffff" stroke="${ink}" stroke-width="4.5"/>
+
+            <g transform="translate(500, 286) rotate(14)">
+              <polygon points="0,-16 32,-4 0,8 -32,-4" fill="${coral}" stroke="${ink}" stroke-width="3.5" stroke-linejoin="round"/>
+              <path d="M-16,4 L-16,15 C-16,19 16,19 16,15 L16,4 L0,10 Z" fill="${sunny}" stroke="${ink}" stroke-width="3"/>
+              <line x1="26" y1="-2" x2="28" y2="16" stroke="${ink}" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="28" cy="18" r="4" fill="${sunny}" stroke="${ink}" stroke-width="2.5"/>
+            </g>
+
+            <text x="454" y="382" text-anchor="middle" fill="${sunny}" stroke="${ink}" stroke-width="11" paint-order="stroke" font-size="80" font-weight="900" letter-spacing="4">6M</text>
+            <text x="448" y="377" text-anchor="middle" fill="${cobalt}" stroke="${ink}" stroke-width="6" paint-order="stroke" font-size="80" font-weight="900" letter-spacing="4">6M</text>
+
+            <text x="450" y="420" text-anchor="middle" fill="${ink}" font-size="23" font-weight="900" letter-spacing="1.8">武吉港脚南华学校</text>
+
+            <rect x="342" y="434" width="216" height="34" rx="17" fill="${coral}" stroke="${ink}" stroke-width="3.5"/>
+            <text x="450" y="457" text-anchor="middle" fill="#ffffff" font-size="17.5" font-weight="900" letter-spacing="2">2026 毕业啦！</text>
+          `
+          : `
+            <rect x="288" y="260" width="344" height="508" rx="26" fill="${sunny}" stroke="${ink}" stroke-width="4.5"/>
+            <rect x="278" y="250" width="344" height="508" rx="26" fill="#ffffff" stroke="${ink}" stroke-width="4.5"/>
+
+            <rect x="312" y="266" width="276" height="38" rx="19" fill="${cobalt}" stroke="${ink}" stroke-width="3.5"/>
+            <text x="450" y="292" text-anchor="middle" fill="#ffffff" font-size="20.5" font-weight="900" letter-spacing="2.2">我们毕业啦 • 6M</text>
+
+            <text x="450" y="332" text-anchor="middle" fill="${coral}" font-size="16" font-weight="900" letter-spacing="2">★ 武吉港脚南华学校 ★</text>
+            <line x1="302" y1="344" x2="598" y2="344" stroke="${ink}" stroke-width="1.8" stroke-dasharray="5 5" opacity="0.35"/>
+
+            ${buildRoster(ink, coral, 370, 23.4, 12.8)}
+
+            <rect x="314" y="704" width="272" height="38" rx="19" fill="${coral}" stroke="${ink}" stroke-width="3.5"/>
+            <text x="450" y="730" text-anchor="middle" fill="#ffffff" font-size="18.5" font-weight="900" letter-spacing="2.2">青春万岁 • 快乐出发！</text>
+          `;
+
+        return { fabricPattern, printArt, collarFill: "#ffffff", collarStroke: "rgba(0,0,0,0.18)" };
+      }
+
+      function buildShirtSvg(cfg) {
+        const uid = `p${cfg.id}`;
+        const isFront = cfg.side === "front";
+        const { fabricPattern, printArt, collarFill, collarStroke } = buildTemplateLayers(cfg, uid);
+
+        const stitchColor = "rgba(0,0,0,0.16)";
+        const creaseDark  = "rgba(42,46,58,0.18)";
+        const creaseLight = "rgba(255,255,255,0.52)";
+
+        const bodyPath = isFront
+          ? "M360,82 C388,162 512,162 540,82 L674,122 L822,318 L704,400 L646,312 L646,842 C646,862 634,872 612,872 L288,872 C266,872 254,862 254,842 L254,312 L196,400 L78,318 L226,122 Z"
+          : "M356,82 C398,108 502,108 544,82 L674,122 L822,318 L704,400 L646,312 L646,842 C646,862 634,872 612,872 L288,872 C266,872 254,862 254,842 L254,312 L196,400 L78,318 L226,122 Z";
+
+        const collarMarkup = isFront
+          ? `
+            <path d="M358,82 C402,94 498,94 542,82 C516,158 384,158 358,82 Z" fill="rgba(0,0,0,0.22)"/>
+            <rect x="427" y="96" width="46" height="25" rx="4" fill="rgba(255,255,255,0.9)"/>
+            <text x="450" y="112" text-anchor="middle" fill="#1a2234" font-size="9.5" font-weight="900">6M</text>
+            <path d="M348,85 C382,174 518,174 552,85 L536,80 C508,154 392,154 364,80 Z" fill="${collarFill}" stroke="${collarStroke}" stroke-width="1.6"/>
+          `
+          : `
+            <path d="M352,83 C396,112 504,112 548,83 L539,74 C498,98 402,98 361,74 Z" fill="${collarFill}" stroke="${collarStroke}" stroke-width="1.6"/>
+          `;
+
+        return `
+          <svg class="shirt-svg" viewBox="0 0 900 920" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${cfg.zh} / ${cfg.bm}">
+            <defs>
+              <filter id="weave_${uid}" x="0%" y="0%" width="100%" height="100%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="2" result="noise"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0.05 0" in="noise" result="softNoise"/>
+                <feComposite in="softNoise" in2="SourceGraphic" operator="atop"/>
+              </filter>
+
+              <linearGradient id="sideShade_${uid}" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="${creaseDark}"/>
+                <stop offset="14%" stop-color="transparent"/>
+                <stop offset="86%" stop-color="transparent"/>
+                <stop offset="100%" stop-color="${creaseDark}"/>
+              </linearGradient>
+
+              <clipPath id="clipShirt_${uid}">
+                <path d="${bodyPath}"/>
+              </clipPath>
+            </defs>
+
+            <g clip-path="url(#clipShirt_${uid})">
+              ${fabricPattern}
+
+              <rect x="78" y="80" width="744" height="800" fill="url(#sideShade_${uid})"/>
+              <path d="M254,312 C282,324 308,356 318,402" fill="none" stroke="${creaseDark}" stroke-width="15" stroke-linecap="round" opacity="0.25"/>
+              <path d="M646,312 C618,324 592,356 582,402" fill="none" stroke="${creaseDark}" stroke-width="15" stroke-linecap="round" opacity="0.25"/>
+              <path d="M274,742 C340,768 560,768 626,742" fill="none" stroke="${creaseLight}" stroke-width="24" opacity="0.2"/>
+              <path d="M282,810 C360,830 540,830 618,810" fill="none" stroke="${creaseDark}" stroke-width="18" opacity="0.18"/>
+
+              <path d="M226,122 C245,190 250,255 254,312" fill="none" stroke="${stitchColor}" stroke-width="2" stroke-dasharray="4 4"/>
+              <path d="M674,122 C655,190 650,255 646,312" fill="none" stroke="${stitchColor}" stroke-width="2" stroke-dasharray="4 4"/>
+              <line x1="254" y1="846" x2="646" y2="846" stroke="${stitchColor}" stroke-width="2" stroke-dasharray="4 4"/>
+              <line x1="254" y1="853" x2="646" y2="853" stroke="${stitchColor}" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+              <g id="print_${uid}">
+                ${printArt}
+              </g>
+
+              <rect x="78" y="80" width="744" height="800" fill="transparent" filter="url(#weave_${uid})"/>
+              <ellipse cx="450" cy="460" rx="220" ry="260" fill="${creaseLight}" opacity="0.06" pointer-events="none"/>
+            </g>
+
+            ${collarMarkup}
+            <path d="${bodyPath}" fill="none" stroke="rgba(0,0,0,0.16)" stroke-width="2"/>
+          </svg>
+        `;
+      }
+
+      const viewport = document.getElementById("viewport");
+      const pagesHost = document.getElementById("pagesHost");
+      const bottomHud = document.getElementById("bottomHud");
+      const hudTitleZh = document.getElementById("hudTitleZh");
+      const hudTitleBm = document.getElementById("hudTitleBm");
+      const hudColorChip = document.getElementById("hudColorChip");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      const zoomBtn = document.getElementById("zoomBtn");
+      const backdropBtn = document.getElementById("backdropBtn");
+
+      let currentIdx = 0;
+
+      PAGES.forEach((cfg, idx) => {
+        const sec = document.createElement("section");
+        sec.className = "shirt-page" + (idx === 0 ? " active" : "");
+        sec.dataset.side = cfg.side;
+        sec.innerHTML = `<div class="shirt-canvas-wrap">${buildShirtSvg(cfg)}</div>`;
+        sec.querySelector(".shirt-canvas-wrap").addEventListener("click", () => toggleZoom());
+        pagesHost.appendChild(sec);
+
+        if (idx > 0 && idx % 2 === 0) {
+          const div = document.createElement("span");
+          div.className = "divider-bar";
+          bottomHud.appendChild(div);
+        }
+
+        const dot = document.createElement("button");
+        dot.className = "page-dot" + (idx === 0 ? " active" : "");
+        dot.textContent = cfg.short;
+        dot.setAttribute("aria-label", `${cfg.zh} / ${cfg.bm}`);
+        dot.addEventListener("click", () => goToPage(idx));
+        bottomHud.appendChild(dot);
+      });
+
+      const pageEls = Array.from(document.querySelectorAll(".shirt-page"));
+      const dotEls = Array.from(document.querySelectorAll(".page-dot"));
+
+      function updateHud() {
+        const cfg = PAGES[currentIdx];
+        hudTitleZh.textContent = cfg.zh;
+        hudTitleBm.textContent = cfg.bm;
+        hudColorChip.style.background = cfg.chip;
+        prevBtn.disabled = currentIdx === 0;
+        nextBtn.disabled = currentIdx === PAGES.length - 1;
+        dotEls[currentIdx].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      }
+
+      function goToPage(idx) {
+        if (idx < 0 || idx >= PAGES.length || idx === currentIdx) return;
+        pageEls[currentIdx].classList.remove("active");
+        dotEls[currentIdx].classList.remove("active");
+        currentIdx = idx;
+        pageEls[currentIdx].classList.add("active");
+        dotEls[currentIdx].classList.add("active");
+        updateHud();
+      }
+
+      function toggleZoom(forceState) {
+        const nextState = typeof forceState === "boolean" ? forceState : !viewport.classList.contains("zoomed");
+        viewport.classList.toggle("zoomed", nextState);
+        zoomBtn.classList.toggle("active", nextState);
+        zoomBtn.setAttribute("aria-pressed", String(nextState));
+      }
+
+      zoomBtn.addEventListener("click", () => toggleZoom());
+
+      backdropBtn.addEventListener("click", () => {
+        const isDark = document.body.getAttribute("data-backdrop") === "dark";
+        document.body.setAttribute("data-backdrop", isDark ? "light" : "dark");
+        backdropBtn.classList.toggle("active", !isDark);
+        backdropBtn.setAttribute("aria-pressed", String(!isDark));
+      });
+
+      prevBtn.addEventListener("click", () => goToPage(currentIdx - 1));
+      nextBtn.addEventListener("click", () => goToPage(currentIdx + 1));
+
+      document.addEventListener("keydown", e => {
+        if (e.key === "ArrowRight" || e.key === "PageDown") {
+          e.preventDefault();
+          goToPage(currentIdx + 1);
+        } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+          e.preventDefault();
+          goToPage(currentIdx - 1);
+        } else if (e.key === " " || e.key === "z" || e.key === "Z") {
+          e.preventDefault();
+          toggleZoom();
+        }
+      });
+
+      let touchX = 0;
+      let touchY = 0;
+      viewport.addEventListener("touchstart", e => {
+        touchX = e.changedTouches[0].screenX;
+        touchY = e.changedTouches[0].screenY;
+      }, { passive: true });
+
+      viewport.addEventListener("touchend", e => {
+        const dx = e.changedTouches[0].screenX - touchX;
+        const dy = e.changedTouches[0].screenY - touchY;
+        if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+          if (dx < 0) goToPage(currentIdx + 1);
+          else goToPage(currentIdx - 1);
+        }
+      }, { passive: true });
+
+      updateHud();
+    })();
+  </script>
+</body>
+</html>
